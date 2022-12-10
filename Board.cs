@@ -18,14 +18,14 @@ namespace PegSolitiare
 
         public void Draw(Graphics g, int square_size, int width_limit, int height_limit)
         {
-            for (int i = 0; i <= shape.Item1; i++)
+            for (int row = 0; row < shape.Item1; row++)
             {
-                g.DrawLine(Pens.Black, 0, square_size * i, width_limit, square_size * i);
-            }
-
-            for (int i = 0; i <= shape.Item2; i++)
-            {
-                g.DrawLine(Pens.Black, square_size * i, 0, square_size * i, height_limit);
+                for (int col = 0; col < shape.Item2; col++)
+                {
+                    Rectangle rect = new Rectangle(col*square_size, row*square_size, square_size, square_size);
+                    Pen pen = new Pen(Color.Black, 1);
+                    g.DrawRectangle(pen, rect);
+                }
             }
         }
     }

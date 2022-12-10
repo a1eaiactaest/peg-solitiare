@@ -15,4 +15,4 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 * Count all the moves.
 * Detect if there's no moves left.
 
-Those are the basic tasks, further will implement backtracking algorithm to find shortest peg solitiare solution.
+Those are the basic tasks, further will implement backtracking algorithm to find the shortest peg solitiare solution.

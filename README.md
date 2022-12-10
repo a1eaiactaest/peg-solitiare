@@ -7,7 +7,7 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 
 ## Plan
 
-* Draw the board, cross-shaped.
+* ~~Draw the board, cross-shaped~~.
 * Draw the pegs, leave middle empty.
 * Implement a `Move()` function.
 * Redraw board to suit prior `Move()` instance (remove captured peg).

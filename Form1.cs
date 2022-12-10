@@ -1,13 +1,17 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace PegSolitiare
 {
     public partial class Form1 : Form
     {
-        Board board = new Board((7,7));
+        static bool[,] board_state = new bool[7,7];
+        Board board = new Board(board_state);
 
         public Form1()
         {
             InitializeComponent();
         }
+
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -28,7 +32,7 @@ namespace PegSolitiare
 
             
             //board[x_map, y_map] = true;
-            MessageBox.Show(String.Format("{0} {1}", x_map, y_map));
+            MessageBox.Show($"{board_state[x_map,y_map]}");
 
             pictureBox1.Invalidate();
         }

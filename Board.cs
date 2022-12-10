@@ -11,13 +11,13 @@ namespace PegSolitiare
 {
     internal class Board
     {
-        public (int, int) shape = (7, 7);
+        public bool[,] state;
+        public (int, int) shape;
 
-        public bool[,] state = new bool[7, 7];
-
-        public Board((int, int) shape)
+        public Board(bool[,] state)
         {
-            this.shape = shape;
+            this.state = state;
+            shape = (state.GetLength(0), state.GetLength(1));
         }
         public void Draw(Graphics g, int square_size)
         {

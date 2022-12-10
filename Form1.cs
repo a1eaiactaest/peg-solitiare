@@ -15,7 +15,7 @@ namespace PegSolitiare
 
             // Draw Board
             int square_size = pictureBox1.Height / board.shape.Item2;
-            board.Draw(g, square_size, pictureBox1.Width, pictureBox1.Height);
+            board.Draw(g, square_size);
 
         }
 

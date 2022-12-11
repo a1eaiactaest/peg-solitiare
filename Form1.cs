@@ -4,12 +4,14 @@ namespace PegSolitiare
 {
     public partial class Form1 : Form
     {
-        static bool[,] board_state = new bool[7,7];
-        Board board = new Board(board_state);
+        bool[,]? board_state;
+        Board board;
 
         public Form1()
         {
             InitializeComponent();
+            board_state = new bool[7, 7];
+            board = new Board(board_state);
         }
 
 
@@ -30,9 +32,9 @@ namespace PegSolitiare
             int x_map = e.X/square_size;
             int y_map = e.Y/square_size;
 
-            
+
             //board[x_map, y_map] = true;
-            MessageBox.Show($"{board_state[x_map,y_map]}");
+            _ = MessageBox.Show($"{board_state[x_map, y_map]}");
 
             pictureBox1.Invalidate();
         }

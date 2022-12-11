@@ -38,6 +38,7 @@ namespace PegSolitiare
                         g.DrawRectangle(pen, rect);
                     }
 
+                    // draw peg for certain position
                     if (state[row,col] == true)
                     {
                         if (!(row == 3 && col == 3))

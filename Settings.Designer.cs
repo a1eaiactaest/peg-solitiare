@@ -31,5 +31,14 @@ namespace PegSolitiare {
                 return ((int)(this["PegSize"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int BoardSize {
+            get {
+                return ((int)(this["BoardSize"]));
+            }
+        }
     }
 }

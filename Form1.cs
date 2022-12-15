@@ -10,10 +10,16 @@ namespace PegSolitiare
         public Form1()
         {
             InitializeComponent();
-            board_state = new bool[7, 7];
-            board = new Board(board_state);
+
+            InitializeBoard();
         }
 
+        private void InitializeBoard()
+        {
+            int n = Settings.Default.BoardSize;
+            board_state = new bool[n, n];
+            board = new Board(board_state);
+        }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -36,6 +42,13 @@ namespace PegSolitiare
             //board[x_map, y_map] = true;
             _ = MessageBox.Show($"{board_state[x_map, y_map]}");
 
+            pictureBox1.Invalidate();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Reset board to default state.
+            InitializeBoard();
             pictureBox1.Invalidate();
         }
     }

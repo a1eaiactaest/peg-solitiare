@@ -14,7 +14,9 @@ namespace PegSolitiare
     internal class Board
     {
         public int[] exclude = { 1, 2, 6, 7, 8, 9, 13, 14, 36, 37, 41, 42, 43, 44, 48, 49 };
+
         public bool[,] state;
+        public Peg[,] pegs = new Peg[7,7];
         public (int, int) shape;
 
         public Board(bool[,] state)
@@ -40,14 +42,15 @@ namespace PegSolitiare
                         g.DrawRectangle(pen, rect);
                     }
 
-                    // draw peg for certain position
+                    // draw peg for a certain position
                     if (state[row,col] == true)
                     {
                         if (!(row == 3 && col == 3))
                         {
-                            Rectangle rect = new Rectangle((col * square_size)+5, (row * square_size)+5, square_size-10, square_size-10);
-                            Pen pen = new Pen(Color.Red);
-                            g.FillEllipse(Brushes.Red, rect);
+                            Peg peg = new Peg(row, col, square_size, state[row,col]);
+                            pegs[row,col] = peg;
+                            peg.Draw(g);
+
                         }
                     }
 
@@ -58,9 +61,14 @@ namespace PegSolitiare
             state[shape.Item1 / 2, shape.Item2 / 2] = false;
         }
 
+        public void Move((int, int) src, (int,int) dest)
+        {
+            // TODO
+        }
+
         public void Update(Graphics g)
         {
-
+            // pass
         }
     }
 }

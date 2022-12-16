@@ -25,9 +25,9 @@ namespace PegSolitiare
             this.shape = (state.GetLength(0), state.GetLength(1));
 
             int i = 1;
-            for (int row = 0; row < shape.Item1; row++)
+            for (int col = 0; col < shape.Item1; col++)
             {
-                for (int col = 0; col < shape.Item2; col++)
+                for (int row = 0; row < shape.Item2; row++)
                 {
 
                     if (!(exclude.Contains(i)))
@@ -39,11 +39,19 @@ namespace PegSolitiare
                         current_peg.Left = square_size * row;
                         current_peg.Top = square_size * col;
 
+                        current_peg.Name = $"({row},{col})";
+
                         if (!(row == 3 && col == 3))
                         {
                             current_peg.BackColor = Color.Black;
-                        } 
-                     
+                            state[row, col] = 1;
+                        } else
+                        {
+                            state[row, col] = 0;
+                        }
+
+                        current_peg.Click += new EventHandler(PegClick);
+                    
                         pictureBox.Controls.Add(current_peg);
                     }
                     i++;
@@ -51,9 +59,19 @@ namespace PegSolitiare
             }
         }
 
+        private void PegClick(object sender, EventArgs e)
+        {
+            Button PegClicked = (Button) sender;
+
+            string repr = PegClicked.Name;
+            System.Diagnostics.Debug.WriteLine($"{repr}");
+
+        }
+
+
         public void Draw(Graphics g, int square_size)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

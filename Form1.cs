@@ -30,8 +30,8 @@ namespace PegSolitiare
             Graphics g = e.Graphics;
 
             // Draw Board
-            int square_size = pictureBox1.Height / board.shape.Item2;
-            board.Draw(g, square_size);
+            //int square_size = pictureBox1.Height / board.shape.Item2;
+            //board.Draw(g, square_size);
 
         }
 
@@ -54,9 +54,6 @@ namespace PegSolitiare
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Reset board to default state.
-            //InitializeBoard();
-            board.state[4, 3] = false;
             pictureBox1.Invalidate();
         }
     }

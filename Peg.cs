@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,16 @@ namespace PegSolitiare
 
         public void Draw(Graphics g)
         {
-            g.FillEllipse(Brushes.Black, x, y, size, size);
+            int row = x;
+            int col = y;
+
+            if (state)
+            {
+                Rectangle rect = new Rectangle((col * size) + 5, (row * size) + 5, size - 10, size - 10);
+                Pen pen = new Pen(Color.Red);
+                g.FillEllipse(Brushes.Red, rect);
+            }
+            
         }
     }
 }

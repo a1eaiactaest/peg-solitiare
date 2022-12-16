@@ -16,59 +16,39 @@ namespace PegSolitiare
         public int[] exclude = { 1, 2, 6, 7, 8, 9, 13, 14, 36, 37, 41, 42, 43, 44, 48, 49 };
 
         public bool[,] state;
-        public Peg[,] pegs = new Peg[7,7];
+        public Button[,] pegs = new Button[7, 7];
         public (int, int) shape;
 
-        public Board(bool[,] state)
+        public Board(bool[,] state, int square_size, PictureBox pictureBox)
         {
             this.state = state;
             this.shape = (state.GetLength(0), state.GetLength(1));
-        }
 
-        public void Draw(Graphics g, int square_size)
-        {            
             int i = 1;
             for (int row = 0; row < shape.Item1; row++)
             {
                 for (int col = 0; col < shape.Item2; col++)
                 {
-                    if (!(exclude.Contains(i))){
-                        // set default value of state
-                        state[row,col] = true;
 
-                        // draw board square
-                        Rectangle rect = new Rectangle(col * square_size, row * square_size, square_size, square_size);
-                        Pen pen = new Pen(Color.Black, 1);
-                        g.DrawRectangle(pen, rect);
-                    }
-
-                    // draw peg for a certain position
-                    if (state[row,col] == true)
+                    if (!(exclude.Contains(i)))
                     {
-                        if (!(row == 3 && col == 3))
-                        {
-                            Peg peg = new Peg(row, col, square_size, state[row,col]);
-                            pegs[row,col] = peg;
-                            peg.Draw(g);
+                        Button current_peg = pegs[row, col];
+                        current_peg = new Button();
+                        current_peg.Width = square_size;
+                        current_peg.Height = square_size;
+                        current_peg.Left = square_size * row;
+                        current_peg.Top = square_size * col;
 
-                        }
+                        pictureBox.Controls.Add(current_peg);
                     }
-
-                    i += 1;
+                    i++;
                 }
             }
-            // empty middle item of state
-            state[shape.Item1 / 2, shape.Item2 / 2] = false;
         }
 
-        public void Move((int, int) src, (int,int) dest)
+        public void Draw(Graphics g, int square_size)
         {
-            // TODO
-        }
-
-        public void Update(Graphics g)
-        {
-            // pass
+            
         }
     }
 }

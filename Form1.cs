@@ -18,8 +18,11 @@ namespace PegSolitiare
         private void InitializeBoard()
         {
             int n = Settings.Default.BoardSize;
+            int square_size = pictureBox1.Height / 7;
+
             board_state = new bool[n, n];
-            board = new Board(board_state);
+            board = new Board(board_state, square_size, pictureBox1);
+
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -52,7 +55,8 @@ namespace PegSolitiare
         private void button1_Click(object sender, EventArgs e)
         {
             // Reset board to default state.
-            InitializeBoard();
+            //InitializeBoard();
+            board.state[4, 3] = false;
             pictureBox1.Invalidate();
         }
     }

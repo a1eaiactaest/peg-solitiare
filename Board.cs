@@ -15,11 +15,11 @@ namespace PegSolitiare
     {
         public int[] exclude = { 1, 2, 6, 7, 8, 9, 13, 14, 36, 37, 41, 42, 43, 44, 48, 49 };
 
-        public bool[,] state;
+        public int[,] state;
         public Button[,] pegs = new Button[7, 7];
         public (int, int) shape;
 
-        public Board(bool[,] state, int square_size, PictureBox pictureBox)
+        public Board(int[,] state, int square_size, PictureBox pictureBox)
         {
             this.state = state;
             this.shape = (state.GetLength(0), state.GetLength(1));
@@ -39,6 +39,11 @@ namespace PegSolitiare
                         current_peg.Left = square_size * row;
                         current_peg.Top = square_size * col;
 
+                        if (!(row == 3 && col == 3))
+                        {
+                            current_peg.BackColor = Color.Black;
+                        } 
+                     
                         pictureBox.Controls.Add(current_peg);
                     }
                     i++;

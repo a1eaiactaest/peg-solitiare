@@ -5,7 +5,7 @@ namespace PegSolitiare
 {
     public partial class Form1 : Form
     {
-        bool[,]? board_state;
+        int[,]? board_state;
         Board board;
 
         public Form1()
@@ -20,7 +20,7 @@ namespace PegSolitiare
             int n = Settings.Default.BoardSize;
             int square_size = pictureBox1.Height / 7;
 
-            board_state = new bool[n, n];
+            board_state = new int[n, n];
             board = new Board(board_state, square_size, pictureBox1);
 
         }

@@ -55,6 +55,10 @@ namespace PegSolitiare
                         current_peg.Click += new EventHandler(PegClick);
                     
                         pictureBox.Controls.Add(current_peg);
+                    } else
+                    {
+                        // this are corners of out board, they need to be included in the state too.
+                        state[row, col] = 0;
                     }
                     i++;
                 }

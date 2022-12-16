@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 
 namespace PegSolitiare
@@ -40,7 +41,10 @@ namespace PegSolitiare
 
 
             //board[x_map, y_map] = true;
-            _ = MessageBox.Show($"{board_state[x_map, y_map]}");
+            if (board.pegs[x_map, y_map] != null )
+            {
+                _ = MessageBox.Show($"{board.pegs[x_map, y_map].ToString()}");
+            }
 
             pictureBox1.Invalidate();
         }

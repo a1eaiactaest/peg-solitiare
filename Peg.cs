@@ -13,12 +13,19 @@ namespace PegSolitiare
         public int x;
         public int y;
         public int size;
+        public bool state;
 
-        public Peg(int x, int y, int size)
+        public Peg(int x, int y, int size, bool state)
         {
             this.x = x;
             this.y = y;
             this.size = size;
+            this.state = state;
+        }
+
+        public override string ToString()
+        {
+            return $"x: {x}, y: {y}, size: {size}, state: {state}";
         }
 
         public void Draw(Graphics g)

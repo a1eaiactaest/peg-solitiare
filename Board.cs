@@ -39,7 +39,6 @@ namespace PegSolitiare
                         current_peg.Left = square_size * row;
                         current_peg.Top = square_size * col;
 
-                        current_peg.Name = $"({row},{col})";
 
                         if (!(row == 3 && col == 3))
                         {
@@ -49,6 +48,9 @@ namespace PegSolitiare
                         {
                             state[row, col] = 0;
                         }
+
+                        current_peg.Name = $"({row},{col}) {state[row,col]}";
+
 
                         current_peg.Click += new EventHandler(PegClick);
                     

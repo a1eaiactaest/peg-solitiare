@@ -12,17 +12,16 @@ namespace PegSolitiare
         {
             InitializeComponent();
 
-            InitializeBoard();
+            board = InitializeBoard();
         }
 
-        private void InitializeBoard()
+        private Board InitializeBoard()
         {
             int n = Settings.Default.BoardSize;
             int square_size = pictureBox1.Height / 7;
 
             board_state = new int[n, n];
-            board = new Board(board_state, square_size, pictureBox1);
-
+            return new Board(board_state, square_size, pictureBox1);
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

@@ -16,7 +16,6 @@ namespace PegSolitiare
         public int[] exclude = { 1, 2, 6, 7, 8, 9, 13, 14, 36, 37, 41, 42, 43, 44, 48, 49 };
 
         public int[,] state;
-        public Button[,] pegs = new Button[7, 7];
         public (int, int) shape;
 
         bool src_pick = true;
@@ -26,6 +25,9 @@ namespace PegSolitiare
 
         int dest_row = 0;
         int dest_col = 0;
+
+        public Button[,] pegs = new Button[7, 7];
+
 
         public Board(int[,] state, int square_size, PictureBox pictureBox)
         {
@@ -56,6 +58,8 @@ namespace PegSolitiare
                         {
                             state[row, col] = 0;
                         }
+
+                        current_peg.UseVisualStyleBackColor = false;
 
                         current_peg.Name = $"({row},{col}) {state[row,col]}";
 
@@ -104,6 +108,8 @@ namespace PegSolitiare
                 (int, int) move_dest = (dest_row, dest_col);
 
                 Move move = new Move(move_src, move_dest, state);
+
+                // currently only horizontal move is implemented.
                 if (move.isLegit())
                 {
                     MakeMove(move);
@@ -113,12 +119,11 @@ namespace PegSolitiare
 
         public void MakeMove(Move move)
         {
-
             state[move.src.Item1, move.src.Item2] = 0;
-            pegs[move.src.Item1, move.src.Item2].BackColor = Color.White;
+            pegs[move.src.Item1, move.src.Item2].ResetBackColor();
 
             state[move.jumpedPegRow, move.src.Item2] = 0; 
-            pegs[move.jumpedPegRow, move.src.Item2].BackColor = Color.White;
+            pegs[move.jumpedPegRow, move.src.Item2].ResetBackColor();
 
             state[move.dest.Item1, move.dest.Item2] = 1; 
             pegs[move.dest.Item1, move.dest.Item2].BackColor = Color.Black;

@@ -30,10 +30,15 @@ namespace PegSolitiare
 
         public int pegs_on_board = (7 * 7) - (4 * 4) - 1;
 
-        public Board(int[,] state, int square_size, PictureBox pictureBox)
+        public int moves_made = 0;
+
+        public Label moves_label;
+
+        public Board(int[,] state, int square_size, PictureBox pictureBox, Label moves_label)
         {
             this.state = state;
             this.shape = (state.GetLength(0), state.GetLength(1));
+            this.moves_label = moves_label;
 
             int i = 1;
             for (int row = 0; row < shape.Item1; row++)
@@ -139,6 +144,10 @@ namespace PegSolitiare
             pegs[move.dest.Item1, move.dest.Item2].BackColor = Color.Black;
 
             this.pegs_on_board -= 1;
+            this.moves_made += 1;
+
+            this.moves_label.Text = $"Moves: {moves_made}";
+
         }
 
 

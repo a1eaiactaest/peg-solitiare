@@ -22,7 +22,7 @@ namespace PegSolitiare
             int square_size = pictureBox1.Height / 7;
 
             board_state = new int[n, n];
-            return new Board(board_state, square_size, pictureBox1);
+            return new Board(board_state, square_size, pictureBox1, label1);
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -63,8 +63,15 @@ namespace PegSolitiare
                 }
                 board = InitializeBoard();
             }
+            label1.Text = "Moves: 0";
+
 
             //pictureBox1.Invalidate();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

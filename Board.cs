@@ -42,31 +42,31 @@ namespace PegSolitiare
 
                     if (!(exclude.Contains(i)))
                     {
-                        Button current_peg = pegs[row, col];
-                        current_peg = new Button();
-                        current_peg.Width = square_size;
-                        current_peg.Height = square_size;
-                        current_peg.Left = square_size * row;
-                        current_peg.Top = square_size * col;
+                        //Button current_peg = pegs[row, col];
+                        pegs[row,col] = new Button();
+                        pegs[row,col].Width = square_size;
+                        pegs[row, col].Height = square_size;
+                        pegs[row, col].Left = square_size * row;
+                        pegs[row, col].Top = square_size * col;
 
 
                         if (!(row == 3 && col == 3))
                         {
-                            current_peg.BackColor = Color.Black;
+                            pegs[row, col].BackColor = Color.Black;
                             state[row, col] = 1;
                         } else
                         {
                             state[row, col] = 0;
                         }
 
-                        current_peg.UseVisualStyleBackColor = false;
+                        pegs[row, col].UseVisualStyleBackColor = false;
 
-                        current_peg.Name = $"({row},{col}) {state[row,col]}";
+                        pegs[row, col].Name = $"({row},{col}) {state[row,col]}";
 
 
-                        current_peg.Click += new EventHandler(PegClick);
+                        pegs[row, col].Click += new EventHandler(PegClick);
                     
-                        pictureBox.Controls.Add(current_peg);
+                        pictureBox.Controls.Add(pegs[row, col]);
                     } else
                     {
                         // this are corners of out board, they need to be included in the state too.
@@ -77,7 +77,7 @@ namespace PegSolitiare
             }
         }
 
-        private void PegClick(object sender, EventArgs e)
+        public void PegClick(object sender, EventArgs e)
         {
             Button PegClicked = (Button) sender;
 

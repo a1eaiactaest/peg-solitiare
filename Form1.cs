@@ -54,13 +54,16 @@ namespace PegSolitiare
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = pictureBox1.Controls.Count; i >= 0; i--)
+            if (board.pegs_on_board+1 <= 32)
             {
-                System.Diagnostics.Debug.WriteLine(i);
-                pictureBox1.Controls.RemoveAt(i);
-                i++;
+                for (int i = pictureBox1.Controls.Count; i > 0; i--)
+                {
+                    System.Diagnostics.Debug.WriteLine(i);
+                    pictureBox1.Controls.RemoveAt(i-1);
+                }
+                board = InitializeBoard();
             }
-            board = InitializeBoard();
+
             //pictureBox1.Invalidate();
         }
     }

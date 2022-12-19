@@ -28,6 +28,7 @@ namespace PegSolitiare
 
         public Button[,] pegs = new Button[7, 7];
 
+        public int pegs_on_board = (7 * 7) - (4 * 4) - 1;
 
         public Board(int[,] state, int square_size, PictureBox pictureBox)
         {
@@ -134,6 +135,8 @@ namespace PegSolitiare
 
             state[move.dest.Item1, move.dest.Item2] = 1; 
             pegs[move.dest.Item1, move.dest.Item2].BackColor = Color.Black;
+
+            this.pegs_on_board -= 1;
         }
 
 

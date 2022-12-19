@@ -34,7 +34,7 @@ namespace PegSolitiare
             {
                 if (Math.Abs(src.Item1 - dest.Item1) == 2)
                 {
-                    this.jumpedPegRow = (src.Item1 + src.Item1) / 2;
+                    this.jumpedPegRow = (src.Item1 + dest.Item1) / 2;
 
 
                     // src is a peg

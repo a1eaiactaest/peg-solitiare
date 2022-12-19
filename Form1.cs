@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 
@@ -53,7 +54,14 @@ namespace PegSolitiare
 
         private void button1_Click(object sender, EventArgs e)
         {
-            pictureBox1.Invalidate();
+            for (int i = pictureBox1.Controls.Count; i >= 0; i--)
+            {
+                System.Diagnostics.Debug.WriteLine(i);
+                pictureBox1.Controls.RemoveAt(i);
+                i++;
+            }
+            board = InitializeBoard();
+            //pictureBox1.Invalidate();
         }
     }
 }

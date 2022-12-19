@@ -9,10 +9,10 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 
 * ~~Draw the board, cross-shaped~~.
 * ~~Draw the pegs, leave middle empty~~.
-* Implement a `Move()` function.
-* Redraw board to suit prior `Move()` instance (remove captured peg).
-* Add illegal move detection to `Move()` function.
-* Count all the moves.
+* ~~Implement a `Move()` function.~~
+* ~~Redraw board to suit prior `Move()` instance (remove captured peg).~~
+* ~~Add illegal move detection to `Move()` function.~~
+* ~~Count all the moves.~~
 * Detect if there's no moves left.
 
 Those are the basic tasks, further will implement backtracking algorithm to find the shortest peg solitiare solution.

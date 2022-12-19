@@ -122,8 +122,15 @@ namespace PegSolitiare
             state[move.src.Item1, move.src.Item2] = 0;
             pegs[move.src.Item1, move.src.Item2].ResetBackColor();
 
-            state[move.jumpedPegRow, move.src.Item2] = 0; 
-            pegs[move.jumpedPegRow, move.src.Item2].ResetBackColor();
+            if (move.horizontal)
+            {
+                state[move.jumpedPegCol, move.src.Item2] = 0;
+                pegs[move.jumpedPegCol, move.src.Item2].ResetBackColor();
+            } else
+            {
+                state[move.src.Item1, move.jumpedPegRow] = 0;
+                pegs[move.src.Item1, move.jumpedPegRow].ResetBackColor();
+            }
 
             state[move.dest.Item1, move.dest.Item2] = 1; 
             pegs[move.dest.Item1, move.dest.Item2].BackColor = Color.Black;

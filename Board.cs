@@ -44,11 +44,13 @@ namespace PegSolitiare
                     if (!(exclude.Contains(i)))
                     {
                         //Button current_peg = pegs[row, col];
-                        pegs[row,col] = new Button();
-                        pegs[row,col].Width = square_size;
-                        pegs[row, col].Height = square_size;
-                        pegs[row, col].Left = square_size * row;
-                        pegs[row, col].Top = square_size * col;
+                        pegs[row, col] = new Button
+                        {
+                            Width = square_size,
+                            Height = square_size,
+                            Left = square_size * row,
+                            Top = square_size * col,
+                        };
 
 
                         if (!(row == 3 && col == 3))

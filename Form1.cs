@@ -25,6 +25,26 @@ namespace PegSolitiare
             return new Board(board_state, square_size, pictureBox1, label1);
         }
 
+        private void Reset()
+        {
+            if (board.pegs_on_board + 1 <= 32)
+            {
+                for (int i = pictureBox1.Controls.Count; i > 0; i--)
+                {
+                    System.Diagnostics.Debug.WriteLine(i);
+                    pictureBox1.Controls.RemoveAt(i - 1);
+                }
+                board = InitializeBoard();
+            }
+            label1.Text = "Moves: 0";
+        }
+
+        private void Solve() 
+        {
+            Reset();
+        }
+
+
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -54,19 +74,7 @@ namespace PegSolitiare
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (board.pegs_on_board+1 <= 32)
-            {
-                for (int i = pictureBox1.Controls.Count; i > 0; i--)
-                {
-                    System.Diagnostics.Debug.WriteLine(i);
-                    pictureBox1.Controls.RemoveAt(i-1);
-                }
-                board = InitializeBoard();
-            }
-            label1.Text = "Moves: 0";
-
-
-            //pictureBox1.Invalidate();
+            Reset();
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -21,6 +21,10 @@ Those are the basic tasks, further will implement backtracking algorithm to find
 ## Notes on Backtracking
 Reading George I. Bell [whitepaper](https://arxiv.org/abs/0903.3696) on solving peg solitiare.
 
-One can represent begining state of the game with an $N$ bit integer.
+One can represent begining state of the game with an $N$ bit integer as so:
+```math
+2^N - 2^\frac{N/2} - 1
+```
+where $N$ is $33$.
 
 

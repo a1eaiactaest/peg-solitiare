@@ -27,4 +27,9 @@ One can represent begining state of the game with an $N$ bit integer as so:
 ```
 where $N$ is $33$.
 
+So the begining state is:
+```math
+111111111111111101111111111111111_2
+```
+
 

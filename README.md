@@ -18,5 +18,9 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 Those are the basic tasks, further will implement backtracking algorithm to find the shortest peg solitiare solution.
 
 
-## Backtracking
+## Notes on Backtracking
 Reading George I. Bell [whitepaper](https://arxiv.org/abs/0903.3696) on solving peg solitiare.
+
+One can represent begining state of the game with an $N$ bit integer.
+
+

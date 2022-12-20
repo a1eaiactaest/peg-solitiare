@@ -16,3 +16,7 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 * Detect if there's no moves left.
 
 Those are the basic tasks, further will implement backtracking algorithm to find the shortest peg solitiare solution.
+
+
+## Backtracking
+Reading George I. Bell [whitepaper](https://arxiv.org/abs/0903.3696) on solving peg solitiare.

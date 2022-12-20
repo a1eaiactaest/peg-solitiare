@@ -23,7 +23,7 @@ Reading George I. Bell [whitepaper](https://arxiv.org/abs/0903.3696) on solving 
 
 One can represent begining state of the game with an $N$ bit integer as so:
 ```math
-2^N - 2^\frac{N/2} - 1
+2^N - 2^{\frac{N/2}} - 1
 ```
 where $N$ is $33$.
 

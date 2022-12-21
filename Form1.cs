@@ -1,6 +1,10 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
+using System.Collections;
+
+// Modules
+using static PegSolitiare.Utils;
 
 namespace PegSolitiare
 {
@@ -42,6 +46,12 @@ namespace PegSolitiare
         private void Solve() 
         {
             Reset();
+
+
+            BitArray flat_bits_state = new BitArray(Utils.flatten(board_state)); 
+            Backtrack backtrack = new Backtrack(board, flat_bits_state);
+            backtrack.Solve();
+
         }
 
 
@@ -80,6 +90,11 @@ namespace PegSolitiare
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Solve();
         }
     }
 }

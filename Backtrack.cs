@@ -9,18 +9,48 @@ namespace PegSolitiare
 {
     internal class Backtrack
     {
-        public Board board;
-        public BitArray state;
+        private readonly Board board;
+        private readonly List<((int, int), (int, int))> _solution;
 
         public Backtrack(Board board, BitArray state)
         {
             this.board = board;
-            this.state = state;
+            this._solution = new List<((int, int), (int, int))>();
         }
 
-        public void Solve()
+        public List<((int,int), (int,int))> Solve()
         {
+            return Solve(0, 0);
+        }
 
+        private List<((int, int), (int, int))> Solve(int src_row, int src_col)
+        {
+            if (board.IsFinished())
+            {
+                return _solution;
+            }
+
+            for (int row = 0; row < board.shape.Item1; row++)
+            {
+                for (int col = 0; col < board.shape.Item2; col++)
+                {
+                    Move tmp_move = new Move((src_row, src_col), (row, col), board.state);
+                    if (tmp_move.isLegit())
+                    {
+                        board.MakeMove(tmp_move);
+                        _solution.Add((tmp_move.src, tmp_move.dest));
+
+                        List<((int, int), (int, int))> solution = Solve(row, col);
+                        
+                        if (solution != null)
+                        {
+                            return solution;
+                        }
+
+                        board.ReverseMove();
+                    }
+                }
+            }
         }
     }
 }

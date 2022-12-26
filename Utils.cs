@@ -25,13 +25,14 @@ namespace PegSolitiare
 
         public static Dictionary<string, (int,int)> generate_dirs()
         {
-            Dictionary<string, (int, int)> hash_dirs = new Dictionary<string, (int, int)>();
-
-            // (row, col)
-            hash_dirs.Add("N", (-1, 0));
-            hash_dirs.Add("S", (1, 0));
-            hash_dirs.Add("W", (0, -1));
-            hash_dirs.Add("E", (0, 1));
+            Dictionary<string, (int, int)> hash_dirs = new Dictionary<string, (int, int)>
+            {
+                // (row, col)
+                { "N", (-1, 0) },
+                { "S", (1, 0) },
+                { "W", (0, -1) },
+                { "E", (0, 1) }
+            };
 
             return hash_dirs;
         }

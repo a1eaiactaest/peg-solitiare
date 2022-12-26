@@ -34,6 +34,7 @@ namespace PegSolitiare
 
         public Label moves_label;
 
+
         public Board(int[,] state, int square_size, PictureBox pictureBox, Label moves_label)
         {
             this.state = state;
@@ -75,7 +76,7 @@ namespace PegSolitiare
                         pegs[row, col].Click += new EventHandler(PegClick);
                     
                         pictureBox.Controls.Add(pegs[row, col]);
-                    } else
+                    } else 
                     {
                         // this are corners of out board, they need to be included in the state too.
                         state[row, col] = 0;
@@ -85,8 +86,64 @@ namespace PegSolitiare
             }
         }
 
+        public bool IsFinished()
+        {
+            int acc = 0;
+            for (int i = 0; i < shape.Item1; i++)
+            {
+                for (int j = 0; j < shape.Item2; j++)
+                {
+                    if (state[i, j] == 1)
+                    {
+                        acc++;
+                    }
+                }
+            }
+            return acc == 1;
+        }
+
+
+        // this really slows down the game play is there a better way?
+        public bool HasMoves()
+        {
+            int x = 1;
+            for (int i = 0; i < shape.Item1; i++)
+            {
+                for (int j = 0; j < shape.Item2; j++)
+                {
+                    
+                    if (state[i,j] == 1)
+                    {
+                        for (int k = -2; k <= 2; k++)
+                        {
+                            for (int l = -2; l <= 2; l++)
+                            {
+                                if (k == 0 || l == 0 || Math.Abs(k) == Math.Abs(l))
+                                {
+                                    continue;
+                                }
+                                if (!(exclude.Contains(i+k)) && !(exclude.Contains(j + l)))
+                                {
+                                    Move move = new Move((i, j), (i+k, j+l), state);
+                                    if (move.isLegit())
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    x++;
+                }
+            }
+            return false;
+        }
+
         public void PegClick(object sender, EventArgs e)
         {
+
+            // System.Diagnostics.Debug.WriteLine($"has moves: {HasMoves()}");
+
             Button PegClicked = (Button) sender;
 
             string repr = PegClicked.Name;
@@ -117,10 +174,13 @@ namespace PegSolitiare
 
                 Move move = new Move(move_src, move_dest, state);
 
-                // currently only horizontal move is implemented.
                 if (move.isLegit())
                 {
                     MakeMove(move);
+                    if (IsFinished())
+                    {
+                        moves_label.Text = $"Game Won with {moves_made} moves made.";
+                    }
                 }
             }
         }
@@ -147,6 +207,11 @@ namespace PegSolitiare
             this.moves_made += 1;
 
             this.moves_label.Text = $"Moves: {moves_made}";
+
+        }
+
+        public void ReverseMove(Move move)
+        {
 
         }
 

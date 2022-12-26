@@ -36,10 +36,13 @@ namespace PegSolitiare
 
         public Stack<Move> history;
 
+        public readonly int square_size;
+
 
         public Board(int[,] state, int square_size, PictureBox pictureBox, Label moves_label)
         {
             this.state = state;
+            this.square_size = square_size;
             this.shape = (state.GetLength(0), state.GetLength(1));
             this.moves_label = moves_label;
             this.history = new Stack<Move>();
@@ -82,7 +85,7 @@ namespace PegSolitiare
                     } else 
                     {
                         // this are corners of out board, they need to be included in the state too.
-                        state[row, col] = 0;
+                        state[row, col] = -1;
                     }
                     i++;
                 }

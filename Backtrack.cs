@@ -12,7 +12,7 @@ namespace PegSolitiare
         private readonly Board board;
         private readonly List<((int, int), (int, int))> _solution;
 
-        public Backtrack(Board board, BitArray state)
+        public Backtrack(Board board)
         {
             this.board = board;
             this._solution = new List<((int, int), (int, int))>();
@@ -20,7 +20,7 @@ namespace PegSolitiare
 
         public List<((int,int), (int,int))> Solve()
         {
-            return Solve(0, 0);
+            return Solve(3, 5);
         }
 
         private List<((int, int), (int, int))> Solve(int src_row, int src_col)
@@ -48,9 +48,11 @@ namespace PegSolitiare
                         }
 
                         board.ReverseMove();
+                        _solution.RemoveAt(_solution.Count - 1);
                     }
                 }
             }
+            return null;
         }
     }
 }

@@ -45,14 +45,82 @@ namespace PegSolitiare
 
         private void Solve() 
         {
-            /*Reset();
+            Reset();
 
 
-            BitArray flat_bits_state = new BitArray(Utils.flatten(board_state)); 
-            Backtrack backtrack = new Backtrack(board, flat_bits_state);
-            backtrack.Solve();*/
+            Backtrack backtrack = new Backtrack(board);
+            List<((int, int), (int, int))> solution = backtrack.Solve();
+            System.Diagnostics.Debug.Write(solution.ToArray());
+
 
         }
+
+        private List<Move> SolveGame(Board board)
+        {
+            // Check if the game is already finished
+            if (board.IsFinished())
+            {
+                return board.history.ToList();
+            }
+
+            // Try making a move and solving the game from the resulting board state
+            for (int row = 0; row < board.shape.Item1; row++)
+            {
+                for (int col = 0; col < board.shape.Item1; col++)
+                {
+                    if (board.state[row, col] == 1)
+                    {
+                        for (int k = -2; k <= 2; k++)
+                        {
+                            for (int l = -2; l <= 2; l++)
+                            {
+                                if (k == 0 || l == 0 || Math.Abs(k) == Math.Abs(l))
+                                {
+                                    continue;
+                                }
+                                if (!(board.exclude.Contains(row + k)) && !(board.exclude.Contains(col + l)))
+                                {
+                                    if (!(row + k < 0 || col + l < 0 || row + k > board.shape.Item1 || col + l > board.shape.Item1))
+                                    {
+                                        System.Diagnostics.Debug.WriteLine($"{row+k}: {col+l}");
+                                        if (board.state[row + k, col + l] == 0)
+                                        {
+                                            // Make a copy of the current board state
+                                            int[,] newState = (int[,])board.state.Clone();
+
+                                            // Make the move on the copied board state
+                                            newState[row, col] = 0;
+                                            newState[row + k, col + l] = 1;
+                                            newState[(row + k + row) / 2, (col + l + col) / 2] = 0;
+
+                                            // Create a new board with the modified state
+                                            Board newBoard = new Board(newState, board.square_size, pictureBox1, board.moves_label);
+
+                                            // Save the move to the history stack
+                                            Move move = new Move((row, col), (row + k, col + l), board.state);
+                                            newBoard.history.Push(move);
+                                            newBoard.moves_made++;
+
+                                            // Recursively solve the game with the modified board
+                                            List<Move> solution = SolveGame(newBoard);
+
+                                            // If a solution was found, return it
+                                            if (solution.Count > 0)
+                                            {
+                                                return solution;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return new List<Move>();
+        }
+
+
 
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -94,7 +162,7 @@ namespace PegSolitiare
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Solve();
+            List<Move> moves = SolveGame(board);
         }
 
         private void button4_Click(object sender, EventArgs e)

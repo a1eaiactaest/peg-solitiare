@@ -45,12 +45,12 @@ namespace PegSolitiare
 
         private void Solve() 
         {
-            Reset();
+            /*Reset();
 
 
             BitArray flat_bits_state = new BitArray(Utils.flatten(board_state)); 
             Backtrack backtrack = new Backtrack(board, flat_bits_state);
-            backtrack.Solve();
+            backtrack.Solve();*/
 
         }
 
@@ -94,12 +94,12 @@ namespace PegSolitiare
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Solve();
+            //Solve();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            board.ReverseMove();
         }
     }
 }

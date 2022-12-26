@@ -34,12 +34,15 @@ namespace PegSolitiare
 
         public Label moves_label;
 
+        public Stack<Move> history;
+
 
         public Board(int[,] state, int square_size, PictureBox pictureBox, Label moves_label)
         {
             this.state = state;
             this.shape = (state.GetLength(0), state.GetLength(1));
             this.moves_label = moves_label;
+            this.history = new Stack<Move>();
 
             int i = 1;
             for (int row = 0; row < shape.Item1; row++)
@@ -207,11 +210,40 @@ namespace PegSolitiare
             this.moves_made += 1;
 
             this.moves_label.Text = $"Moves: {moves_made}";
-
+            this.history.Push(move);
         }
 
-        public void ReverseMove(Move move)
+        public void ReverseMove()
         {
+
+            if (this.history.Count <= 0)
+            {
+                return;
+            }
+
+            Move move = this.history.Pop();
+
+            state[move.src.Item1, move.src.Item2] = 1;
+            pegs[move.src.Item1, move.src.Item2].BackColor = Color.Black;
+
+            if (move.horizontal)
+            {
+                state[move.jumpedPegCol, move.src.Item2] = 1;
+                pegs[move.jumpedPegCol, move.src.Item2].BackColor = Color.Black;
+            }
+            else
+            {
+                state[move.src.Item1, move.jumpedPegRow] = 1;
+                pegs[move.src.Item1, move.jumpedPegRow].BackColor = Color.Black;
+            }
+
+            state[move.dest.Item1, move.dest.Item2] = 0;
+            pegs[move.dest.Item1, move.dest.Item2].ResetBackColor();
+
+            this.pegs_on_board += 1;
+            this.moves_made -= 1;
+
+            this.moves_label.Text = $"Moves: {moves_made}";
 
         }
 

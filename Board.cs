@@ -186,6 +186,10 @@ namespace PegSolitiare
                     if (IsFinished())
                     {
                         moves_label.Text = $"Game Won with {moves_made} moves made.";
+                        foreach (Move _move in history)
+                        {
+                            System.Diagnostics.Debug.WriteLine(_move.ToString());
+                        }
                     }
                 }
             }

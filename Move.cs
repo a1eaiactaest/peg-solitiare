@@ -81,5 +81,10 @@ namespace PegSolitiare
             System.Diagnostics.Debug.WriteLine("Move is not valid.");
             return false;
         }
+
+        public override string ToString()
+        {
+            return $"Move({src}, {dest})";
+        }
     }
 }

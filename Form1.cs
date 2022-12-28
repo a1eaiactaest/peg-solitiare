@@ -49,10 +49,15 @@ namespace PegSolitiare
 
 
             Backtrack backtrack = new Backtrack(board);
-            List<((int, int), (int, int))> solution = backtrack.Solve();
-            System.Diagnostics.Debug.Write(solution.ToArray());
+            Stack<Move> solution = backtrack.Solve();
+            if (solution != null)
+            {
+                foreach (Move move in solution)
+                {
+                    System.Diagnostics.Debug.Write(move.ToString());
 
-
+                }
+            }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

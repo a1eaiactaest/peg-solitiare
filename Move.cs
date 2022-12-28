@@ -10,7 +10,7 @@ namespace PegSolitiare
     {
         public (int, int) src;
         public (int, int) dest;
-        private int[,] state;
+        private readonly int[,] state;
 
         public int jumpedPegCol;
         public int jumpedPegRow;

@@ -9,21 +9,21 @@ namespace PegSolitiare
 {
     internal class Backtrack
     {
-        private readonly Board board;
-        private readonly List<((int, int), (int, int))> _solution;
+        private Board board;
+        private Stack<Move> _solution;
 
         public Backtrack(Board board)
         {
             this.board = board;
-            this._solution = new List<((int, int), (int, int))>();
+            this._solution = new Stack<Move>();
         }
 
-        public List<((int,int), (int,int))> Solve()
+        public Stack<Move> Solve()
         {
-            return Solve(3, 5);
+            return _Solve(0, 0);
         }
 
-        private List<((int, int), (int, int))> Solve(int src_row, int src_col)
+        private Stack<Move> _Solve(int src_row, int src_col)
         {
             if (board.IsFinished())
             {
@@ -34,22 +34,53 @@ namespace PegSolitiare
             {
                 for (int col = 0; col < board.shape.Item2; col++)
                 {
-                    Move tmp_move = new Move((src_row, src_col), (row, col), board.state);
-                    if (tmp_move.isLegit())
+                    if (board.state[row, col] == 1)
                     {
-                        board.MakeMove(tmp_move);
-                        _solution.Add((tmp_move.src, tmp_move.dest));
-
-                        List<((int, int), (int, int))> solution = Solve(row, col);
-                        
-                        if (solution != null)
+                        // neighbors
+                        for (int n_row = -2; n_row <= 2; n_row++)
                         {
-                            return solution;
-                        }
+                            for (int n_col = -2; n_col <= 2; n_col++)
+                            {
+                                // if square is the current square or move is diagonal
+                                if ((n_row == 0 && n_row == 0) || Math.Abs(n_row) == Math.Abs(n_col))
+                                {
+                                    continue;
+                                }
 
-                        board.ReverseMove();
-                        _solution.RemoveAt(_solution.Count - 1);
-                    }
+                                // if dest is not on corners
+                                if (!(board.exclude.Contains(row + n_row)) &&
+                                    !(board.exclude.Contains(col + n_col)))
+                                {
+                                    int dest_row = row + n_row;
+                                    int dest_col = col + n_col;
+                                    // if dest in bounds 
+                                    if ((0 <= dest_row && dest_row <= board.shape.Item1) && (0 <= dest_col && dest_col <= board.shape.Item1))
+                                    {
+                                        // if dest is empty
+                                        if (board.state[dest_row, dest_col] == 0)
+                                        {
+                                            Move tmp_move = new Move((src_row, src_col), (row, col), board.state);
+                                            if (tmp_move.isLegit())
+                                            {
+                                                board.MakeMove(tmp_move);
+                                                _solution.Push(tmp_move);
+
+                                                Stack<Move> solution = _Solve(row, col);
+
+                                                if (solution != null)
+                                                {
+                                                    return solution;
+                                                }
+
+                                                board.ReverseMove();
+                                                _solution.Pop();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }                    
                 }
             }
             return null;

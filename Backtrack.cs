@@ -59,7 +59,7 @@ namespace PegSolitiare
                                         // if dest is empty
                                         if (board.state[dest_row, dest_col] == 0)
                                         {
-                                            Move tmp_move = new Move((src_row, src_col), (row, col), board.state);
+                                            Move tmp_move = new Move((row, col), (dest_row, dest_col), board.state);
                                             if (tmp_move.isLegit())
                                             {
                                                 board.MakeMove(tmp_move);

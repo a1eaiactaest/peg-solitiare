@@ -4,6 +4,12 @@ CS mid-term project. The idea is to design and implement visually representable 
 Additional task is to create a backtracking algorithm in order to find the shortest peg solitiare solution.
 There are multiple approaches to this problem, involving depth-first search, A* search.
 
+## Buttons
+* `Reset` button resets board to the default position.
+* `Undo` button pops last move from the stack and reverts it.
+* `Solve` button runs Depth-first search backtracking algorithm. __This option doesn't work yet. Work in progress. I have some problems with flow control.
+
+All debug logs are dumped to the output console. `View -> Output` or `Ctrl-Alt-O`.
 
 ## Plan
 
@@ -13,7 +19,7 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 * ~~Redraw board to suit prior `Move()` instance (remove captured peg).~~
 * ~~Add illegal move detection to `Move()` function.~~
 * ~~Count all the moves.~~
-* Detect if there's no moves left.
+* ~~Detect if there's no moves left.~~
 
 Those are the basic tasks, further will implement backtracking algorithm to find the shortest peg solitiare solution.
 

@@ -7,7 +7,7 @@ There are multiple approaches to this problem, involving depth-first search, A* 
 ## Buttons
 * `Reset` button resets board to the default position.
 * `Undo` button pops last move from the stack and reverts it.
-* `Solve` button runs Depth-first search backtracking algorithm. __This option doesn't work yet. Work in progress. I have some problems with flow control.
+* `Solve` button runs Depth-first search backtracking algorithm. __This option doesn't work yet. Work in progress. I have some problems with flow control.__
 
 All debug logs are dumped to the output console. `View -> Output` or `Ctrl-Alt-O`.
 

@@ -83,7 +83,7 @@ namespace PegSolitiare
                     }                    
                 }
             }
-            if (!hasLegalMoves)
+            if (!board.HasMoves() && board.pegs_on_board == 1)
             {
                 return _solution;
             }

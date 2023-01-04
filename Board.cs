@@ -158,7 +158,7 @@ namespace PegSolitiare
             int clicked_row = int.Parse(repr.Substring(1, 1));
             int clicked_col = int.Parse(repr.Substring(3, 1));
 
-            System.Diagnostics.Debug.WriteLine($"{src_pick}");
+            //System.Diagnostics.Debug.WriteLine($"{src_pick}");
 
             if (src_pick)
             {

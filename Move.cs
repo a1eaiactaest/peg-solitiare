@@ -32,7 +32,7 @@ namespace PegSolitiare
             */ 
 
 
-            System.Diagnostics.Debug.WriteLine($"Validating a Move from {src.Item1} {src.Item2} to {dest.Item1} {dest.Item2}:");
+            //System.Diagnostics.Debug.WriteLine($"Validating a Move from {src.Item1} {src.Item2} to {dest.Item1} {dest.Item2}:");
 
 
             // horizontal
@@ -51,7 +51,7 @@ namespace PegSolitiare
                             // dest is not a peg
                             if (state[dest.Item1, dest.Item2] == 0)
                             {
-                                System.Diagnostics.Debug.WriteLine("Horizontal move is valid.");
+                                //System.Diagnostics.Debug.WriteLine("Horizontal move is valid.");
                                 this.horizontal = true;
                                 return true;
                             }
@@ -70,7 +70,7 @@ namespace PegSolitiare
                         {
                             if (state[dest.Item1, dest.Item2] == 0)
                             {
-                                System.Diagnostics.Debug.WriteLine("Vertical move is valid.");
+                                //System.Diagnostics.Debug.WriteLine("Vertical move is valid.");
                                 return true;
 
                             }
@@ -78,7 +78,7 @@ namespace PegSolitiare
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("Move is not valid.");
+            //System.Diagnostics.Debug.WriteLine("Move is not valid.");
             return false;
         }
 

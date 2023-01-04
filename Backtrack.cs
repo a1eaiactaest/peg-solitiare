@@ -25,10 +25,7 @@ namespace PegSolitiare
 
         private Stack<Move> _Solve(int src_row, int src_col)
         {
-            if (board.IsFinished())
-            {
-                return _solution;
-            }
+            bool hasLegalMoves = false;
 
             for (int row = 0; row < board.shape.Item1; row++)
             {
@@ -42,7 +39,7 @@ namespace PegSolitiare
                             for (int n_col = -2; n_col <= 2; n_col++)
                             {
                                 // if square is the current square or move is diagonal
-                                if ((n_row == 0 && n_row == 0) || Math.Abs(n_row) == Math.Abs(n_col))
+                                if ((n_row == 0 && n_col == 0) || Math.Abs(n_row) == Math.Abs(n_col))
                                 {
                                     continue;
                                 }
@@ -62,6 +59,9 @@ namespace PegSolitiare
                                             Move tmp_move = new Move((row, col), (dest_row, dest_col), board.state);
                                             if (tmp_move.isLegit())
                                             {
+
+                                                hasLegalMoves = true;
+
                                                 board.MakeMove(tmp_move);
                                                 _solution.Push(tmp_move);
 
@@ -83,7 +83,12 @@ namespace PegSolitiare
                     }                    
                 }
             }
+            if (!hasLegalMoves)
+            {
+                return _solution;
+            }
             return null;
+
         }
     }
 }
